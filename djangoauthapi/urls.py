@@ -15,8 +15,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
+
+admin.site.site_header = _("Register Now")  # Change the header The _() function is a shortcut for gettext or gettext_lazy in Django.
+admin.site.site_title = _("My Site Admin")           # Change the browser tab title
+admin.site.index_title = _("Welcome to My Admin")    # Change the dashboard title
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/user/', include('account.urls') )
 ]

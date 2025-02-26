@@ -4,7 +4,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 # Create your models here.
 #This class is responsible for managing user creation (both normal users and superusers).
 class UserManager(BaseUserManager):
-    def create_user(self, email, date_of_birth,role, name, password=None, password1=None):
+    def create_user(self, email, date_of_birth,role, name, password=None, password2=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -85,3 +85,11 @@ class User(AbstractBaseUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
+
+
+class UserProfile(models.Model):
+    user_info = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    bio = models.TextField()
+    username = models.CharField(max_length=22)
+    #image
+    #location
