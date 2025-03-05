@@ -13,7 +13,9 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         # first we validate password
         password = attrs.get('password')
-        password2 = attrs.get('password2')
+        password2 = attrs.pop('password2')
+        print(attrs)
+        print(password2)
         if password != password2:
             raise serializers.ValidationError("Both password and confirm password must be same")
         return attrs
@@ -30,3 +32,10 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 #         model = User
 #         fields = "__all__"
 
+
+class UserLoginSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(max_length = 255) # first serialize it If you remove this line, the serializer will no longer know how to handle the email field in terms of validation and formatting. In that case, you could:
+    class Meta:
+        model = User
+        fields = ['email','password'] #This line tells the serializer which fields from the User model you want to include for serialization or validation.
+    

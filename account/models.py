@@ -13,7 +13,7 @@ class UserManager(BaseUserManager):
             raise ValueError("Users must have an email address")
 
         user = self.model(
-            email=self.normalize_email(email),
+            email=self.normalize_email(email), #It converts the email to lowercase 
             date_of_birth=date_of_birth,
             name = name,
             role = role

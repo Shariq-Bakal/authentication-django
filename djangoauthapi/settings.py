@@ -140,3 +140,4 @@ SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS': True,  # Whether to rotate refresh tokens when used
     'BLACKLIST_AFTER_ROTATION': True,  # Blacklist old refresh tokens after a new one is issued
 }
+APPEND_SLASH = True
